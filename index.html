@@ -1030,6 +1030,7 @@ function profileView(){
   const focusTotal=Object.values(focusLog).reduce((a,b)=>a+(Number(b)||0),0),me={name:settings.name||'?',photo:settings.photo};
   const line=[settings.level,settings.school].filter(Boolean).join(' · ');
   return `<div class="page-head"><div><span class="eyebrow">${L('Votre carte','Your card')}</span><h1>${L('mon <em>profil.</em>','my <em>profile.</em>')}</h1><p>${L('Ces informations restent sur cet appareil. Seuls votre prénom, et votre photo si vous l’autorisez, sont envoyés dans vos groupes.','This information stays on this device. Only your name, and your photo if you allow it, is sent to your groups.')}</p></div></div>
+  ${signedIn()?'':'<div style="margin-bottom:18px">'+accountCard()+'</div>'}
   <div class="profile-grid"><div class="card profile-card">${avatarHTML(me,'lg')}
     <h2 id="pcName">${esc(settings.name||L('Votre prénom','Your name'))}</h2><span class="muted" id="pcLine" style="font-size:13px">${esc(line||L('Niveau et établissement à compléter','Add your level and school'))}</span>
     <div class="row" style="justify-content:center"><label class="btn soft sm" style="cursor:pointer">${ic('up')} ${settings.photo?L('Changer la photo','Change photo'):L('Ajouter une photo','Add a photo')}<input type="file" accept="image/*" hidden onchange="pickPhoto(this)"></label>${settings.photo?`<button class="btn line sm" onclick="removePhoto()">${L('Retirer','Remove')}</button>`:''}</div></div>
